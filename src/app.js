@@ -87,7 +87,7 @@ var MovieView = Backbone.View.extend({
   },
 
   handleClick: function() {
-    //debugger;
+    debugger;
     // your code here
       if (this.like === true) {
         this.showLiked();      
@@ -98,15 +98,15 @@ var MovieView = Backbone.View.extend({
     
     //hides Liked 
     hideLiked: function(e){
-      e = this.attributes.like;
-      e.className = 'hidden';
+      e = this.$('#likes');
+      e.addClass('hidden');
       //test for revised data output
       console.log(e);
       this.like = true;
     }, //hides liked ends
     //shows liked
     showLiked: function(e){
-      e = this.attributes.like;
+      e = this.$('#likes');
       e.className = 'unhidden';
       //test for revised data output
       console.log(e);
