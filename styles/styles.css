@@ -48,6 +48,16 @@ h1 {
     float: right;
 }
 
+.movie #likes {
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: red;
+    float: right;
+}
+
+.hidden {display: none;}
+.unhidden {display: block;}
+
 .movie .like button {
     border: none;
     margin: 0;
@@ -58,3 +68,5 @@ h1 {
 .movie:hover {
     background-color: #ede;
 }
+
+

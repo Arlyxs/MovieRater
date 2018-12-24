@@ -23,12 +23,9 @@ var Movies = Backbone.Collection.extend({
 
   sortByField: function(field) {
     // your code here
-	//collection.sort();
-	//debugger;
 	this.comparator = field;
 	this.sort();
 	console.log("we desperate");
-	
   }
 
 });
@@ -44,7 +41,6 @@ var AppView = Backbone.View.extend({
 
   handleClick: function(e) {
     //write code here
-	
 	var field = e.target.value;
 	this.collection.sortByField(field);
 	this.render();
@@ -63,14 +59,15 @@ var AppView = Backbone.View.extend({
 //define the view/interface for the individual movies
 var MovieView = Backbone.View.extend({
 
-  template: _.template('<div class="movie"> \
-                          <div class="like"> \
-                            <button><img src="images/<%- like ? \'up\' : \'down\' %>.jpg"></button> \
-                          </div> \
-                          <span class="title"><%- title %></span> \
-                          <span class="year">(<%- year %>)</span> \
-                          <div class="rating">Fan rating: <%- rating %> of 10</div> \
-                        </div>'),
+  template: _.template('<div class="movie"> '+
+                          '<div class="like">'+
+                            '<button><img src="images/<%- like ? \'up\' : \'down\' %>.jpg"></button>'+
+                          '</div>' +
+                          '<span class="title"><%- title %></span>'+
+                          '<span class="year">(<%- year %>)</span>'+
+                          '<div class="rating">Fan rating: <%- rating %> of 10  '+
+                          '<span id="likes" class="hidden"><%- liked %></span>'+
+                        '</div>'),
 
   initialize: function() {
     // your code here
