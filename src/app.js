@@ -99,7 +99,7 @@ var MovieView = Backbone.View.extend({
     //hides Liked 
     hideLiked: function(e){
       e = this.$('#likes');
-      e.addClass('hidden');
+      e.className='hidden';
       //test for revised data output
       console.log(e);
       this.like = true;
