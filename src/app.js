@@ -89,7 +89,7 @@ var MovieView = Backbone.View.extend({
   handleClick: function() {
     debugger;
     // your code here
-      if (this.like === true) {
+      if (this.like === false) {
         this.showLiked();      
       } else {
         this.hideLiked();
