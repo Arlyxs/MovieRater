@@ -103,6 +103,7 @@ var MovieView = Backbone.View.extend({
       //test for revised data output
       console.log(e);
       this.like = true;
+      console.log(like);
     }, //hides liked ends
     //shows liked
     showLiked: function(e){
