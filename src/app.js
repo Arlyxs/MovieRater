@@ -6,15 +6,36 @@ var Movie = Backbone.Model.extend({
   //toggle function
   toggleLike: function() {
     this.set('like', !this.get('like'));
-  },
+    this.display();
+  },//toggle like ends
 
   //display liked and up / down images
+  display: function(){
+    debugger;
+    if (this.like === true) {
+      this.showLiked();      
+    } else {
+      this.hideLiked();
+    } //if else ends
+  },
+//hides Liked 
+hideLiked: function(e){
+  e = $('#likes');
+  e.className='hidden';
+  //test for revised data output
+  console.log(e);
+  this.like = true;
+}, //hides liked ends
+//shows liked
+showLiked: function(e){
+  e = $('likes');
+  e.className = 'unhidden';
+  //test for revised data output
+  console.log(e);
+  this.like = false;
+},//show liked ends 
 
-
-
-
-});
-
+});//backbone model ends
 
 //define the collection here - to hold the individual models
 var Movies = Backbone.Collection.extend({
@@ -71,7 +92,7 @@ var MovieView = Backbone.View.extend({
                           '<span class="title"><%- title %></span>'+
                           '<span class="year">(<%- year %>)</span>'+
                           '<div class="rating">Fan rating: <%- rating %> of 10  '+
-                          '<span id="likes" class="unhidden"><%- liked %></span>'+
+                          '<span id="likes" class="hidden"><%- liked %></span>'+
                         '</div>'),
 
   initialize: function() {
@@ -87,32 +108,13 @@ var MovieView = Backbone.View.extend({
   },
 
   handleClick: function() {
-    debugger;
     // your code here
-      if (this.like === false) {
-        this.showLiked();      
-      } else {
-        this.hideLiked();
-      } //if else ends
-    },//display ends
+    this.model.toggleLike();
+      
+      this.render();
+    },
     
-    //hides Liked 
-    hideLiked: function(e){
-      e = this.$('#likes');
-      e.className='hidden';
-      //test for revised data output
-      console.log(e);
-      this.like = true;
-      console.log(like);
-    }, //hides liked ends
-    //shows liked
-    showLiked: function(e){
-      e = this.$('#likes');
-      e.className = 'unhidden';
-      //test for revised data output
-      console.log(e);
-      this.like = false;
-    }, //handle click ends
+    
 
 
   render: function() {
