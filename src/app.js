@@ -1,59 +1,51 @@
+/* jslint esversion: 6 */
 var Movie = Backbone.Model.extend({
-
   defaults: {
     like: true
   },
-
-  toggleLike: function() {
+  //toggle function
+  toggleLike: () => {
     this.set('like', !this.get('like'));
-  }
-
-});
-
+    },//toggle like ends
+});//backbone model ends
 
 //define the collection here - to hold the individual models
 var Movies = Backbone.Collection.extend({
-
   model: Movie,
   comparator: 'title',
 
-  initialize: function() {
+  initialize: () => {
     //add handlers
   },
 
-  sortByField: function(field) {
+  sortByField: (field) => {
     // your code here
 	this.comparator = field;
 	this.sort();
-	console.log("we desperate");
   }
-
-});
-
+});//collection ends
 
 //define the main interface view here
 var AppView = Backbone.View.extend({
-
   events: {
     'click form input': 'handleClick'
   },
 
-
-  handleClick: function(e) {
+  handleClick: (e) => {
     //write code here
 	var field = e.target.value;
 	this.collection.sortByField(field);
 	this.render();
-  },
+  },//handle click sort ends
 
-  render: function() {
+  render: () => {
     new MoviesView({
       el: this.$('#movies'),
       collection: this.collection
     }).render();
-  }
+  }//main view render ends
 
-});
+});//main view app view ends
 
 
 //define the view/interface for the individual movies
@@ -66,45 +58,46 @@ var MovieView = Backbone.View.extend({
                           '<span class="title"><%- title %></span>'+
                           '<span class="year">(<%- year %>)</span>'+
                           '<div class="rating">Fan rating: <%- rating %> of 10  '+
-                          '<span id="likes" class="hidden"><%- liked %></span>'+
+                          '<span id="likes" class="onOff-<%- like ? \'hidden\' : \'unhidden\' %> </span>'+
                         '</div>'),
 
-  initialize: function() {
+  initialize: () => {
     // your code here
+    //this.rende();
+    this.model.on('toggle:like', this.render, this);
   },
 
   //bind the event to its handler function
   events: {
+    
     'click button': 'handleClick'
   },
 
-  handleClick: function() {
+  handleClick: () => {
     // your code here
-	
-	},
+    this.model.toggleLike();
+     //this.display();
+      this.render();
+    },
 
-  render: function() {
+  render: () => {
     this.$el.html(this.template(this.model.attributes));
     return this.$el;
-  }
+  },
 
-});
+});//individual views ends
 
-
-
-//
 var MoviesView = Backbone.View.extend({
-
-  initialize: function() {
+  initialize: () => {
     // your code here
   },
 
-  render: function() {
+  render: () => {
     this.$el.empty();
     this.collection.forEach(this.renderMovie, this);
   },
 
-  renderMovie: function(movie) {
+  renderMovie: (movie) => {
     var movieView = new MovieView({model: movie});
     this.$el.append(movieView.render());
   }

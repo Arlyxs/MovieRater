@@ -55,8 +55,8 @@ h1 {
     float: right;
 }
 
-.hidden {display: none;}
-.unhidden {display: block;}
+onOff.hidden {display: none;}
+onOff.unhidden {display: block;}
 
 .movie .like button {
     border: none;
