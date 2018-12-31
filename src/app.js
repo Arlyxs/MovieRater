@@ -58,12 +58,11 @@ var MovieView = Backbone.View.extend({
                           '<span class="title"><%- title %></span>'+
                           '<span class="year">(<%- year %>)</span>'+
                           '<div class="rating">Fan rating: <%- rating %> of 10  '+
-                          '<span id="likes" class="onOff-<%- like ? \'hidden\' : \'unhidden\' %> </span>'+
+                          '<span id="likes" class="onOff-<%- like ? \'hidden\' : \'unhidden\' %><%- liked %></span>'+
                         '</div>'),
 
   initialize: function() {
     // your code here
-    //this.rende();
     this.model.on('toggle:like', this.render, this);
   },
 
@@ -75,6 +74,7 @@ var MovieView = Backbone.View.extend({
 
   handleClick: function() {
     // your code here
+    debugger;
     this.model.toggleLike();
      //this.display();
       this.render();
