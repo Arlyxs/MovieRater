@@ -58,7 +58,7 @@ var MovieView = Backbone.View.extend({
                           '<span class="title"><%- title %></span>'+
                           '<span class="year">(<%- year %>)</span>'+
                           '<div class="rating">Fan rating: <%- rating %> of 10  '+
-                          '<span id="likes" class="onOff-<%- like ? \'hidden\' : \'unhidden\' %>"><%- like ? liked : unliked %></span>'+
+                          '<span id="likes" class="onOff-<%- like ? \'unhidden\' : \'unhidden\' %>"><%- like ? unliked : liked %></span>'+
                         '</div>'),
 
   initialize: function() {
